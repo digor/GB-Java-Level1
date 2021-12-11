@@ -11,7 +11,7 @@ public class lesson2 {
         System.out.println("Сумма " + (checkNumbers(13, 55) ? "" : "не ") + "в пределах от 10 до 20");
 
 //        2. Написать метод, которому в качестве параметра передается целое число, метод должен напечатать в консоль, положительное ли число передали или отрицательное.
-//           Замечание: ноль считаем положительным числом.
+//           Замечание: ноль считаем положительным   числом.
         System.out.println("============ 2 ============");
         System.out.println("Число " + (isPositive(5) ? "положительное " : "отрицательное"));
         System.out.println("Число " + (isPositive(0) ? "положительное " : "отрицательное"));
@@ -29,11 +29,11 @@ public class lesson2 {
 //            Каждый 4-й год является високосным, кроме каждого 100-го, при этом каждый 400-й – високосный.
         System.out.println("============ 5 ============");
         int currYear = 100;
-        System.out.println("Год " + currYear + " " + (leapYar(currYear) ? "високосный " : "не високосный"));
+        System.out.println("Год " + currYear + " " + (leapYar(currYear) ? "високосный" : "не високосный"));
         currYear = 98;
-        System.out.println("Год " + currYear + " " + (leapYar(currYear) ? "високосный " : "не високосный"));
+        System.out.println("Год " + currYear + " " + (leapYar(currYear) ? "високосный" : "не високосный"));
         currYear = 2104;
-        System.out.println("Год " + currYear + " " + (leapYar(currYear) ? "високосный " : "не високосный"));
+        System.out.println("Год " + currYear + " " + (leapYar(currYear) ? "високосный" : "не високосный"));
     }
 
     public static boolean checkNumbers(int a, int b){
