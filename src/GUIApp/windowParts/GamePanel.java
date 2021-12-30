@@ -6,6 +6,6 @@ import java.awt.*;
 public class GamePanel extends JPanel {
 
     public GamePanel(){
-        setBackground(Color.RED);
+        setBackground(Color.LIGHT_GRAY);
     }
 }
