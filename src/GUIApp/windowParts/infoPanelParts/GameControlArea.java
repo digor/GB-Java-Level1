@@ -1,6 +1,5 @@
 package GUIApp.windowParts.infoPanelParts;
 
-import GUIApp.MainWindow;
 import GUIApp.windowParts.InfoPanel;
 
 import javax.swing.*;
@@ -13,21 +12,35 @@ public class GameControlArea extends JPanel {
     private JButton startGame;
     private JButton exitGame;
 
-    public GameControlArea() {
+    private InfoPanel infoPanel;
+
+    private int STATUS_OK = 0;
+
+    public GameControlArea(InfoPanel infoPanel) {
+        this.infoPanel = infoPanel;
         setLayout(new GridLayout(3,1));
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
         startGame = new JButton("START GAME");
-        exitGame = new JButton("EXIT GAME");
-
         startGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                infoPanel.launchGame();
             }
         });
 
-        add(new JLabel("= Game Control =", SwingConstants.CENTER));
+        exitGame = new JButton("EXIT GAME");
+        exitGame.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(STATUS_OK);
+            }
+        });
+
+        JLabel label = new JLabel("Game Control", SwingConstants.CENTER);
+        label.setBackground(Color.LIGHT_GRAY);
+        label.setOpaque(true);
+        add(label);
         add(startGame);
         add(exitGame);
     }

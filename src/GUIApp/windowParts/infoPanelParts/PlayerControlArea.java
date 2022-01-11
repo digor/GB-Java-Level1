@@ -1,7 +1,12 @@
 package GUIApp.windowParts.infoPanelParts;
 
+import GUIApp.model.Player;
+import GUIApp.windowParts.InfoPanel;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class PlayerControlArea extends JPanel {
     private JButton btnUp;
@@ -9,20 +14,51 @@ public class PlayerControlArea extends JPanel {
     private JButton btnLeft;
     private JButton btnRight;
 
-    public PlayerControlArea(){
-        setLayout(new GridLayout(2,3));
+    private InfoPanel infoPanel;
+
+    public PlayerControlArea(InfoPanel infoPanel){
+        this.infoPanel = infoPanel;
+        setLayout(new GridLayout(3,3));
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
-        btnUp = new JButton("Up");
-        btnDown = new JButton("Down");
-        btnLeft = new JButton("Left");
-        btnRight = new JButton("Right");
+        btnUp = new JButton("⮝");
+        btnUp.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                infoPanel.updatePlayer(Player.playerMoveUp);
+            }
+        });
+        btnDown = new JButton("⮟");
+        btnDown.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
-        add(new JLabel(""));
+                infoPanel.updatePlayer(Player.playerMoveDown);
+            }
+        });
+        btnLeft = new JButton("⮜");
+        btnLeft.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                infoPanel.updatePlayer(Player.playerMoveLeft);
+            }
+        });
+        btnRight = new JButton("⮞");
+        btnRight.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                infoPanel.updatePlayer(Player.playerMoveRight);
+            }
+        });
+
+        add(new JPanel());
         add(btnUp);
-        add(new JLabel(""));
+        add(new JPanel());
         add(btnLeft);
-        add(btnDown);
+        add(new JPanel());
         add(btnRight);
+        add(new JPanel());
+        add(btnDown);
+        add(new JPanel());
     }
 }

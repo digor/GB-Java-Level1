@@ -5,25 +5,35 @@ import java.awt.*;
 
 public class GameInfoArea extends JPanel {
 
-    private JLabel title;
-    private JLabel map;
-    private JLabel level;
-    private JLabel countTrap;
+    private String prefixSizeMap = "Map: ";
+    private String prefixLevel = "Level: ";
+    private String prefixTrapCount = "Trap: ";
+
+    private JLabel trapCount;
+    private JLabel levelGame;
+    private JLabel sizeMap;
 
     public GameInfoArea(){
         setLayout(new GridLayout(4,1));
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
-        title = new JLabel("Game Info", SwingConstants.CENTER);
-        map = new JLabel("Map: ");
-        level = new JLabel("Level: ");
-        countTrap = new JLabel("Count trap: ");
+        sizeMap = new JLabel(prefixSizeMap + "-:-");
+        levelGame = new JLabel(prefixLevel + "-");
+        trapCount = new JLabel(prefixTrapCount +"-");
 
-        add(title);
-        add(map);
-        add(level);
-        add(countTrap);
+        JLabel label = new JLabel("Game Info", SwingConstants.CENTER);
+        label.setBackground(Color.LIGHT_GRAY);
+        label.setOpaque(true);
+        add(label);
+        add(sizeMap);
+        add(levelGame);
+        add(trapCount);
     }
 
+    public void refresh(String sizeMapInfo, int countLevel, int countTraps) {
+        sizeMap.setText(prefixSizeMap+sizeMapInfo);
+        levelGame.setText(prefixLevel+countLevel);
+        trapCount.setText(prefixTrapCount +countTraps);
+    }
 
 }

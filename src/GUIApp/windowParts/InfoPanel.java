@@ -8,9 +8,12 @@ import GUIApp.windowParts.infoPanelParts.PlayerInfoArea;
 
 import javax.swing.*;
 import java.awt.*;
+import java.security.PrivateKey;
 import java.util.Collections;
 
 public class InfoPanel extends JPanel {
+
+    private int panelWidth = 150;
 
     private GameControlArea gameControlArea;
     private GameInfoArea gameInfoArea;
@@ -20,7 +23,10 @@ public class InfoPanel extends JPanel {
     private JTextArea log;
     private JScrollPane scroll;
 
-    public InfoPanel(){
+    private MainWindow mainWindow;
+
+    public InfoPanel(MainWindow mainWindow){
+        this.mainWindow = mainWindow;
         preparePanel();
         createParts();
         prepareLogs();
@@ -33,19 +39,42 @@ public class InfoPanel extends JPanel {
     }
 
     private void preparePanel(){
-        setBackground(Color.YELLOW);
+        setPreferredSize(new Dimension(panelWidth, mainWindow.getHeight()));
         setLayout(new GridLayout(5,1));
     }
 
     private void createParts(){
-        gameControlArea = new GameControlArea();
+        gameControlArea = new GameControlArea(this);
         gameInfoArea = new GameInfoArea();
         playerInfoArea = new PlayerInfoArea();
-        playerControlArea = new PlayerControlArea();
+        playerControlArea = new PlayerControlArea(this);
     }
 
     private void prepareLogs(){
         log = new JTextArea();
+        log.setEditable(false);
+        log.setLineWrap(true);
         scroll = new JScrollPane(log);
+    }
+
+    public JTextArea getLog(){
+        return log;
+    }
+
+    public void recordLog(String msg) {
+        log.append(msg + "\n");
+    }
+
+    public void launchGame(){
+        mainWindow.launchGame();
+    }
+
+    public void refreshInfo(GamePanel map) {
+        gameInfoArea.refresh(map.getMapSize(), map.getLevelCount(), map.getCountTrap());
+        playerInfoArea.refresh(map.getPlayer());
+    }
+
+    public void updatePlayer(int key){
+        mainWindow.updatePlayer(key);
     }
 }
